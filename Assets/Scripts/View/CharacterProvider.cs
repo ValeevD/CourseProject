@@ -102,7 +102,12 @@ public class CharacterProvider : MonoBehaviour, ISynchronize
         {
             bullet.SpawnBullet(newDirection);
             animator.SetTrigger("Shoot");
-            borders.parent = null;
+
+            if(borders.gameObject.activeInHierarchy)
+            {
+                borders.parent = null;
+                borders.position = new Vector3(curTransform.position.x, borders.position.y, curTransform.position.z);
+            }
         }
 
         if(!borders.gameObject.activeInHierarchy)
@@ -146,5 +151,10 @@ public class CharacterProvider : MonoBehaviour, ISynchronize
     {
         //Debug.Log($"is moving: {isMoving}");
         return !isMoving;
+    }
+
+    private void OnDestroy() {
+        if(borders != null)
+            Destroy(borders.gameObject);
     }
 }
