@@ -18,7 +18,7 @@ public class Character : ICharacter, IHealth, IAttack
         positionOnMap = new Vector2();
         direction = new Vector2();
 
-        Health = 1;
+        Health = 3;
         Damage = 1;
 
         moveRadius = 5;
